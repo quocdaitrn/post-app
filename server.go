@@ -4,12 +4,13 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/mux"
 )
 
 func main() {
-	var port string = ":9500"
+	var port string = os.Getenv("PORT")
 	router := mux.NewRouter()
 
 	router.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
@@ -20,7 +21,7 @@ func main() {
 	router.HandleFunc("/posts", addPost).Methods("POST")
 
 	log.Printf("Server is running on port %s\n", port)
-	if err := http.ListenAndServe(port, router); err != nil {
+	if err := http.ListenAndServe(":"+port, router); err != nil {
 		log.Fatal(err)
 	}
 }

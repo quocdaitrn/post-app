@@ -1,4 +1,4 @@
-module github/quocdaitrn/go-full-stack
+module github/quocdaitrn/post-app
 
 go 1.15
 
